@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+
 public class WareHouse {
     Node head = null;
     Node tail = null;
@@ -19,7 +20,7 @@ public class WareHouse {
         sL = soLuong;
 
     }
-    // Quản lý danh sách
+    //=================Quản lý danh sách=================
 
     void addHead(Commodity data) {
 
@@ -57,12 +58,13 @@ public class WareHouse {
 
     void currentWareHouse() throws ParseException {
 
-        addTail(new Commodity(1, "Nuoc nam", "Thuc pham", 10000, 15, sdf.parse("20/11/2015")));
-        addTail(new Commodity(2, "Lo hoa", "Sanh su", 15000, 30, sdf.parse("12/10/2018")));
-        addTail(new Commodity(3, "May say toc", "Dien may", 25000, 7, sdf.parse("03/09/2019")));
+        addTail(new Commodity(1, "Nuoc nam", "Thuc pham", 150000, 15, sdf.parse("20/11/2018")));
+        addTail(new Commodity(2, "Lo hoa", "Sanh su", 30000, 30, sdf.parse("12/10/2015")));
+        addTail(new Commodity(3, "May say toc", "Dien may", 12000, 7, sdf.parse("03/09/2019")));
         addTail(new Commodity(4, "Coca", "Thuc pham", 30000, 50, sdf.parse("29/11/2020")));
-        addTail(new Commodity(5, "Noi com dien", "Dien may", 50000, 20, sdf.parse("19/02/2021")));
-        addTail(new Commodity(6, "Tivi", "Dien may", 100000, 7, sdf.parse("22/04/2021")));
+        addTail(new Commodity(5, "Noi com dien", "Dien may", 100000, 20, sdf.parse("19/02/2008")));
+        addTail(new Commodity(6, "Tivi", "Dien may", 75000, 7, sdf.parse("22/04/2020")));
+        addTail(new Commodity(7, "Dien thoai", "Dien may", 3000000, 4, sdf.parse("05/05/2018")));
 
     }
 
@@ -187,7 +189,7 @@ public class WareHouse {
 
     }
 
-    // Báo cáo-Thống kê
+    //=================Báo cáo-Thống kê=================
     int numberCommodity() {
         Node current = head;
         sL = 0;
@@ -198,7 +200,32 @@ public class WareHouse {
         return sL;
     }
 
-    // Tra cứu
+    long sumValue(){
+        Node current = head;
+        long S = 0;
+        while (current != null) {
+            S += current.data.giaNhap;
+            current = current.next;
+        }
+        return S;
+    }
+
+    int numberOfType(String type){
+
+        Node current ;
+        int sl=0;
+        current = head;
+        while(current != null){
+            if(current.data.loai.equalsIgnoreCase(type)){
+                sl++;
+            }
+            current = current.next;
+        }
+        return sl;
+
+    }
+
+    // =================Tra cứu=================
     void findType(String type) {
 
         Node current = head;
@@ -221,10 +248,10 @@ public class WareHouse {
 
     }
 
-    void findCost(int from, int to) {
-        int l = 0, r = numberCommodity() - 1;
-        
+    void findPrice(int from, int to) throws ParseException{
 
+        sortPrice();
+        int l = 0, r = numberCommodity() - 1;
         while (l <= r) {
             Node current = head;
             int m = l + (r - l) / 2;
@@ -247,7 +274,6 @@ public class WareHouse {
                 else
                     r = m - 1;
                 continue;
-
             }
             if (current.prev.data.giaNhap < from && current.data.giaNhap >= from) {
                 while (current.data.giaNhap <= to) {
@@ -268,10 +294,10 @@ public class WareHouse {
 
     }
 
-    void findDate(Date from, Date to) {
-        int l = 0, r = numberCommodity() - 1;
-        
+    void findDate(Date from, Date to) throws ParseException{
 
+        sortDate();
+        int l = 0, r = numberCommodity() - 1;
         while (l <= r) {
             Node current = head;
             int m = l + (r - l) / 2;
@@ -314,4 +340,59 @@ public class WareHouse {
         }
 
     }
+
+    void coppyData(Commodity a,Commodity b){
+
+        a.maHang = b.maHang;
+        a.tenHang = b.tenHang;
+        a.loai = b.loai;
+        a.giaNhap = b.giaNhap;
+        a.sLTonKho = b.sLTonKho;
+        a.ngayNhap = b.ngayNhap;
+
+    }
+
+    void swapData(Commodity a,Commodity b) throws ParseException{
+
+        Node temp = new Node(new Commodity(0, "0", "0", 0, 0, sdf.parse("01/01/2001")));
+        coppyData(temp.data, a);
+        coppyData(a, b);
+        coppyData(b, temp.data);
+
+    }
+
+    void sortPrice() throws ParseException{
+
+        Node current;
+        int number = 0;
+        while (number <= numberCommodity() - 2) {
+            current = head;
+            for (int i = 0; i < numberCommodity() - 1 - number; i++) {
+                if (current.data.giaNhap > current.next.data.giaNhap) {
+                    swapData(current.data, current.next.data);
+                }
+                current = current.next;
+            }
+            number++;
+        }
+
+    }
+
+    void sortDate() throws ParseException{
+
+        Node current;
+        int number = 0;
+        while (number <= numberCommodity() - 2) {
+            current = head;
+            for (int i = 0; i < numberCommodity() - 1 - number; i++) {
+                if (current.data.ngayNhap.after(current.next.data.ngayNhap)) {
+                    swapData(current.data, current.next.data);
+                }
+                current = current.next;
+            }
+            number++;
+        }
+
+    }
+
 }

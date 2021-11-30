@@ -13,14 +13,10 @@ public class TestDrive {
         Scanner sc = new Scanner(System.in);
         // System.out.print("Nhap so luong hang hoa: ");
         // int sL = sc.nextInt();
-
-        WareHouse ds = new WareHouse();
-
         //ds.addList();
-
         //ds.printList();
 
-
+        WareHouse ds = new WareHouse();
 
         // System.out.print("Nhap ma hang  muon them hang hoa moi vao truoc: ");
         // int ma = sc.nextInt();  
@@ -69,21 +65,34 @@ public class TestDrive {
         // ds.findCost(from, to);
         // System.out.println("***************************************************************************************************************");
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        System.out.println("Nhap khoang ngay :");
-        System.out.print("From(dd/mm/yyyy) :");
-        Date from = sdf.parse(sc.nextLine());
-        System.out.print("To(dd/mm/yyyy) :");
-        Date to = sdf.parse(sc.nextLine());
-        System.out.println("**********************************************Danh sách hàng hóa***********************************************");
-        System.out.println("---------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s  \n","Mã hàng","Tên hàng hóa","Loại",
-        "Giá nhập","Số lượng tồn kho","Ngày nhập kho");
-        System.out.println("---------------------------------------------------------------------------------------------------------------");
-        ds.findDate(from, to);
-        System.out.println("***************************************************************************************************************");
+        // SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        // System.out.println("Nhap khoang ngay :");
+        // System.out.print("From(dd/mm/yyyy) :");
+        // Date from = sdf.parse(sc.nextLine());
+        // System.out.print("To(dd/mm/yyyy) :");
+        // Date to = sdf.parse(sc.nextLine());
+        // System.out.println("**********************************************Danh sách hàng hóa***********************************************");
+        // System.out.println("---------------------------------------------------------------------------------------------------------------");
+        // System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s  \n","Mã hàng","Tên hàng hóa","Loại",
+        // "Giá nhập","Số lượng tồn kho","Ngày nhập kho");
+        // System.out.println("---------------------------------------------------------------------------------------------------------------");
+        // ds.findDate(from, to);
+        // System.out.println("***************************************************************************************************************");
+        
+        // ds.sortPrice();
+        // ds.printList();
+        
+        //ds.sortDate();
+        //ds.printList();
 
+        //System.out.println("Tong gia tri nhap :"+ ds.sumValue());
+
+        System.out.println("So luong loai hang thuc pham: " + ds.numberOfType("Thuc pham"));
+        System.out.println("So luong loai hang sanh su: " + ds.numberOfType("Sanh su"));
+        System.out.println("So luong loai hang dien may: " + ds.numberOfType("Dien may"));
+        
 
 
     }
+    
 }
