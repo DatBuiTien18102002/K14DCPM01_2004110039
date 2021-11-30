@@ -3,7 +3,7 @@ public class Test {
         System.out.println("=== Số lượng sản phẩm :3 ===");
         System.out.println("**********************************************Danh sách hàng hóa***********************************************");
         System.out.println("---------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s \n","Mã hàng","Tên hàng hóa","Loại",
+        System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s  \n","Mã hàng","Tên hàng hóa","Loại",
         "Giá nhập","Số lượng tồn kho","Ngày nhập kho");
         System.out.println("---------------------------------------------------------------------------------------------------------------");
         System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s \n","2004165","bàn chải đánh răng","Thực phẩm",
