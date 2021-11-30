@@ -57,12 +57,12 @@ public class WareHouse {
 
     void currentWareHouse() throws ParseException {
 
-        addTail(new Commodity(1, "Nuoc nam", "Thuc pham", 10000, 15, sdf.parse("20/11/2021")));
-        addTail(new Commodity(2, "Lo hoa", "Sanh su", 15000, 30, sdf.parse("12/10/2021")));
-        addTail(new Commodity(3, "May say toc", "Dien may", 25000, 7, sdf.parse("03/09/2021")));
-        addTail(new Commodity(4, "Coca", "Thuc pham", 30000, 50, sdf.parse("29/11/2021")));
-        addTail(new Commodity(5, "Noi com dien", "Dien may", 50000, 20, sdf.parse("19/02/2019")));
-        addTail(new Commodity(6, "Tivi", "Dien may", 100000, 7, sdf.parse("22/04/2018")));
+        addTail(new Commodity(1, "Nuoc nam", "Thuc pham", 10000, 15, sdf.parse("20/11/2015")));
+        addTail(new Commodity(2, "Lo hoa", "Sanh su", 15000, 30, sdf.parse("12/10/2018")));
+        addTail(new Commodity(3, "May say toc", "Dien may", 25000, 7, sdf.parse("03/09/2019")));
+        addTail(new Commodity(4, "Coca", "Thuc pham", 30000, 50, sdf.parse("29/11/2020")));
+        addTail(new Commodity(5, "Noi com dien", "Dien may", 50000, 20, sdf.parse("19/02/2021")));
+        addTail(new Commodity(6, "Tivi", "Dien may", 100000, 7, sdf.parse("22/04/2021")));
 
     }
 
@@ -232,7 +232,7 @@ public class WareHouse {
                 current = current.next;
             }
             if (current.prev == null) {
-                if (current.data.giaNhap > from) {
+                if (current.data.giaNhap >= from) {
                     while (current.data.giaNhap <= to) {
                         current.data.inThongTin();
                         current = current.next;
@@ -249,7 +249,7 @@ public class WareHouse {
                 continue;
 
             }
-            if (current.prev.data.giaNhap < from && current.data.giaNhap > from) {
+            if (current.prev.data.giaNhap < from && current.data.giaNhap >= from) {
                 while (current.data.giaNhap <= to) {
                     current.data.inThongTin();
                     current = current.next;
@@ -261,6 +261,53 @@ public class WareHouse {
             }
 
             if (current.data.giaNhap < from)
+                l = m + 1;
+            else
+                r = m - 1;
+        }
+
+    }
+
+    void findDate(Date from, Date to) {
+        int l = 0, r = numberCommodity() - 1;
+        
+
+        while (l <= r) {
+            Node current = head;
+            int m = l + (r - l) / 2;
+            for (int i = 0; i < m; i++) {
+                current = current.next;
+            }
+            if (current.prev == null) {
+                if (current.data.ngayNhap.after(from) || current.data.ngayNhap.equals(from)) {
+                    while (current.data.ngayNhap.before(to) || current.data.ngayNhap.equals(to)) {
+                        current.data.inThongTin();
+                        current = current.next;
+                        if (current == null) {
+                            return;
+                        }
+                    }
+                    return;
+                }
+                if (current.data.ngayNhap.before(from))
+                    l = m + 1;
+                else
+                    r = m - 1;
+                continue;
+
+            }
+            if (current.prev.data.ngayNhap.before(from) && (current.data.ngayNhap.after(from) || current.data.ngayNhap.equals(from))) {
+                while (current.data.ngayNhap.before(to) || current.data.ngayNhap.equals(to)) {
+                    current.data.inThongTin();
+                    current = current.next;
+                    if (current == null) {
+                        return;
+                    }
+                }
+                return;
+            }
+
+            if (current.data.ngayNhap.before(from))
                 l = m + 1;
             else
                 r = m - 1;
