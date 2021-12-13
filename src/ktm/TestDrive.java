@@ -87,9 +87,15 @@ public class TestDrive {
 
         //System.out.println("Tong gia tri nhap :"+ ds.sumValue());
 
-        System.out.println("So luong loai hang thuc pham: " + ds.numberOfType("Thuc pham"));
-        System.out.println("So luong loai hang sanh su: " + ds.numberOfType("Sanh su"));
-        System.out.println("So luong loai hang dien may: " + ds.numberOfType("Dien may"));
+        // System.out.println("So luong loai hang thuc pham: " + ds.numberOfType("Thuc pham"));
+        // System.out.println("So luong loai hang sanh su: " + ds.numberOfType("Sanh su"));
+        // System.out.println("So luong loai hang dien may: " + ds.numberOfType("Dien may"));
+
+        ds.sortTypeandPriceDown();
+        ds.printList();
+
+        ds.sortTypeandDateDown();
+        ds.printList();
         
 
 

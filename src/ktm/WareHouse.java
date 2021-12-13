@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class WareHouse {
-    Node head = null;
+    public Node head = null;
     Node tail = null;
     int sL;
 
@@ -57,37 +57,48 @@ public class WareHouse {
 
     void currentWareHouse() throws ParseException {
 
-        addTail(new Commodity(1, "Nuoc nam", "Thuc pham", 150000, 15, sdf.parse("20/11/2018")));
-        addTail(new Commodity(2, "Lo hoa", "Sanh su", 30000, 30, sdf.parse("12/10/2015")));
-        addTail(new Commodity(3, "May say toc", "Dien may", 12000, 7, sdf.parse("03/09/2019")));
-        addTail(new Commodity(4, "Dien thoai", "Dien may", 3000000, 4, sdf.parse("05/05/2018")));
-        addTail(new Commodity(5, "Coca", "Thuc pham", 30000, 50, sdf.parse("29/11/2020")));
-        addTail(new Commodity(6, "Noi com dien", "Dien may", 100000, 20, sdf.parse("19/02/2008")));
-        addTail(new Commodity(7, "Ca nuoc", "Sanh su", 56000, 100, sdf.parse("16/10/2015")));
-        addTail(new Commodity(8, "Dau an", "Thuc pham", 37000, 26, sdf.parse("01/11/2020")));
-        addTail(new Commodity(9, "Tivi", "Dien may", 75000, 7, sdf.parse("22/04/2020")));
+        addTail(new Commodity(1, "Nuoc nam", "Thuc pham", 22000, 25, sdf.parse("25/09/2021")));
+        addTail(new Commodity(2, "Binh hoa", "Sanh su", 62000, 10, sdf.parse("12/10/2019")));
+        addTail(new Commodity(3, "May say toc", "Dien may", 198000, 5, sdf.parse("01/02/2018")));
+        addTail(new Commodity(4, "Dien thoai", "Dien may", 3000000, 7, sdf.parse("05/05/2016")));
+        addTail(new Commodity(5, "Coca", "Thuc pham", 17000, 20, sdf.parse("29/11/2021")));
+        addTail(new Commodity(6, "Noi com dien", "Dien may", 900000, 12, sdf.parse("19/06/2017")));
+        addTail(new Commodity(7, "Ly nuoc", "Sanh su", 13000, 35, sdf.parse("16/10/2015")));
+        addTail(new Commodity(8, "Dau an", "Thuc pham", 42000, 26, sdf.parse("01/11/2021")));
+        addTail(new Commodity(9, "Tivi", "Dien may", 8000000, 4, sdf.parse("22/04/2017")));
+        addTail(new Commodity(10, "May Lanh", "Dien may", 5000000, 7, sdf.parse("26/12/2016")));
+        addTail(new Commodity(11, "Ca hop", "Thuc pham", 13000, 15, sdf.parse("23/06/2021")));
+        addTail(new Commodity(12, "Mi tom", "Thuc pham", 3500, 100, sdf.parse("29/10/2021")));
+        addTail(new Commodity(13, "Den ngu", "Dien may", 169000, 19, sdf.parse("06/12/2017")));
+        addTail(new Commodity(14, "Am tra", "Sanh su", 343000, 2, sdf.parse("19/08/2015")));
+        addTail(new Commodity(15, "May giat", "Dien may", 6000000, 8, sdf.parse("19/03/2015")));
+        addTail(new Commodity(16, "Dia su", "Sanh su", 16000, 42, sdf.parse("24/02/2017")));
+        addTail(new Commodity(17, "Ca phe bich", "Thuc pham", 5000, 26, sdf.parse("01/12/2021")));
+        addTail(new Commodity(18, "Tu lanh", "Dien may", 11000000, 1, sdf.parse("06/07/2016")));
+        addTail(new Commodity(19, "Keo Ngam", "Thuc pham", 8000, 28, sdf.parse("09/11/2021")));
+        addTail(new Commodity(20, "Den pin", "Dien may", 100000, 6, sdf.parse("03/07/2020")));
 
     }
 
-    void addCommodity(Commodity data, int ma) {
+    void addCommodity(Commodity data, int maNhap) {
 
-        if (head.data.maHang == ma) {
+        if (head.data.maHang == maNhap) {
             addHead(data);
             return;
         }
         Node current = head;
         Node newNode = new Node(data);
         while (current != null) {
-            if (current.data.maHang == ma) {
+            if (current.data.maHang == maNhap) {
                 current.prev.next = newNode;
                 newNode.prev = current.prev;
                 newNode.next = current;
                 current.prev = newNode;
-                break;
+                return;
             }
             current = current.next;
         }
-
+        System.out.println("   Ma san pham nhap vao khong ton tai");
     }
 
     void removeCommodity(int ma) {
@@ -146,7 +157,7 @@ public class WareHouse {
                         current.data.sLTonKho = newSLTK;
                         break;
                     case (5):
-                        System.out.print("Nhap ngay nhap kho: ");
+                        System.out.print("Nhap ngay nhap kho(dd/mm/yyyy): ");
                         Date newdate = sdf.parse(sc.nextLine());
                         current.data.ngayNhap = newdate;
                         break;
@@ -161,7 +172,7 @@ public class WareHouse {
 
         for (int i = 0; i < sL; i++) {
 
-            System.out.println("===Sản phẩm " + i + "===");
+            System.out.println("===San pham " + i + "===");
             Commodity newCommodity = new Commodity();
             newCommodity.nhapThongTin();
             addTail(newCommodity);
@@ -174,19 +185,21 @@ public class WareHouse {
 
         Node current = head;
         System.out.println(
-                "**********************************************Danh sách hàng hóa***********************************************");
+                "********************************************************************************************************************");
         System.out.println(
-                "---------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s  \n", "Mã hàng", "Tên hàng hóa", "Loại",
-                "Giá nhập", "Số lượng tồn kho", "Ngày nhập kho");
+                "**                                            Danh sách hàng hóa                                                  **");
         System.out.println(
-                "---------------------------------------------------------------------------------------------------------------");
+                "**----------------------------------------------------------------------------------------------------------------**");
+        System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Ma hang",
+                "Ten hang hoa", "Loai","Gia nhap", "So luong ton kho", "Ngay nhap kho", "**");
+        System.out.println(
+                "**----------------------------------------------------------------------------------------------------------------**");
         while (current != null) {
             current.data.inThongTin();
             current = current.next;
         }
         System.out.println(
-                "***************************************************************************************************************");
+                "********************************************************************************************************************");
 
     }
 
@@ -194,29 +207,20 @@ public class WareHouse {
     void findType(String type) {
 
         Node current = head;
-        System.out.println(
-                "**********************************************Danh sách hàng hóa***********************************************");
-        System.out.println(
-                "---------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-15s %-27s %-15s %-15s %-20s %-20s  \n", "Mã hàng", "Tên hàng hóa", "Loại",
-                "Giá nhập", "Số lượng tồn kho", "Ngày nhập kho");
-        System.out.println(
-                "---------------------------------------------------------------------------------------------------------------");
+        
         while (current != null) {
             if (current.data.loai.equalsIgnoreCase(type)) {
                 current.data.inThongTin();
             }
             current = current.next;
         }
-        System.out.println(
-                "***************************************************************************************************************");
 
     }
     //Tìm kiếm nhị phân
 
     void findPrice(int from, int to) throws ParseException {
 
-        sortPrice(numberCommodity(),head);
+        sortPriceUp(numberCommodity(),head);
         int l = 0, r = numberCommodity() - 1;
         while (l <= r) {
             Node current = head;
@@ -263,7 +267,7 @@ public class WareHouse {
 
     void findDate(Date from, Date to) throws ParseException {
 
-        sortDate(numberCommodity(),head);
+        sortDateUp(numberCommodity(),head);
         int l = 0, r = numberCommodity() - 1;
         while (l <= r) {
             Node current = head;
@@ -329,9 +333,11 @@ public class WareHouse {
         coppyData(a, b);
         coppyData(b, temp.data);
 
+
     }
+    //-----------------Sắp xếp tăng dần
     //Sắp xếp  nổi bọt
-    void sortPrice(int slPT,Node start) throws ParseException {
+    void sortPriceUp(int slPT,Node start) throws ParseException {
 
         Node current;
         int number = 0;
@@ -347,8 +353,12 @@ public class WareHouse {
         }
 
     }
+
+    void callSortPriceUp() throws ParseException{
+        sortPriceUp(numberCommodity(), head);
+    }
     //Sắp xếp  nổi bọt
-    void sortDate(int slPT,Node start) throws ParseException {
+    void sortDateUp(int slPT,Node start) throws ParseException {
 
         Node current;
         int number = 0;
@@ -365,7 +375,12 @@ public class WareHouse {
 
     }
 
-    //sắp xếp sản phẩm cùng loại dứng liên tiếp nhau trong danh sách
+    void callSortDateUp() throws ParseException{
+        sortDateUp(numberCommodity(), head);
+    }
+
+
+    //sắp xếp sản phẩm cùng loại đứng liên tiếp nhau trong danh sách
     Node sortType(Node key , String type) throws ParseException{
         Node current = key.next;
         while(current != null){
@@ -379,31 +394,100 @@ public class WareHouse {
             }
             current =current.next;
         }
-        System.out.println("key:"+key.data.tenHang);
-        return key;
+        return key;//trả về vị trí hiện tại của key
     }
 
-    void sortTypeandPrice() throws ParseException{
+    void sortTypeandPriceUp() throws ParseException{
 
         Node keyTP = head;
         //Sau khi thực hiện hàm sortType biến tham chiếu key vẫn = head nên phải cho hàm sortType trả về key
         Node keySS = sortType(keyTP, "Thuc pham");
-        sortPrice(numberOfType("Thuc pham"), keyTP);
+        sortPriceUp(numberOfType("Thuc pham"), keyTP);
         Node keyDM = sortType(keySS, "Sanh su");
-        sortPrice(numberOfType("Sanh su"), keySS);
-        sortPrice(numberOfType("Dien may"), keyDM);
+        sortPriceUp(numberOfType("Sanh su"), keySS);
+        sortPriceUp(numberOfType("Dien may"), keyDM);
       
     }
 
-    void sortTypeandDate() throws ParseException{
+    void sortTypeandDateUp() throws ParseException{
         
         Node keyTP = head;
         //Sau khi thực hiện hàm sortType biến tham chiếu key vẫn = head nên phải cho hàm sortType trả về key
         Node keySS = sortType(keyTP, "Thuc pham");
-        sortDate(numberOfType("Thuc pham"), keyTP);
+        sortDateUp(numberOfType("Thuc pham"), keyTP);
         Node keyDM = sortType(keySS, "Sanh su");
-        sortDate(numberOfType("Sanh su"), keySS);
-        sortDate(numberOfType("Dien may"), keyDM);
+        sortDateUp(numberOfType("Sanh su"), keySS);
+        sortDateUp(numberOfType("Dien may"), keyDM);
+      
+    }
+    //-----------------Sắp xếp giảm dần
+    //Sắp xếp  nổi bọt
+    void sortPriceDown(int slPT,Node start) throws ParseException {
+
+        Node current;
+        int number = 0;
+        while (number <= slPT - 2) {
+            current = start;
+            for (int i = 0; i < slPT - 1 - number; i++) {
+                if (current.data.giaNhap < current.next.data.giaNhap) {
+                    swapData(current.data, current.next.data);
+                }
+                current = current.next;
+            }
+            number++;
+        }
+
+    }
+
+    void callSortPriceDown() throws ParseException{
+        sortPriceDown(numberCommodity(), head);
+    }
+
+    //Sắp xếp  nổi bọt
+    void sortDateDown(int slPT,Node start) throws ParseException {
+
+        Node current;
+        int number = 0;
+        while (number <= slPT - 2) {
+            current = start;
+            for (int i = 0; i < slPT - 1 - number; i++) {
+                if (current.data.ngayNhap.before(current.next.data.ngayNhap)) {
+                    swapData(current.data, current.next.data);
+                }
+                current = current.next;
+            }
+            number++;
+        }
+
+    }
+
+    
+    void callSortDateDown() throws ParseException{
+        sortDateDown(numberCommodity(), head);
+    }
+
+
+    void sortTypeandPriceDown() throws ParseException{
+
+        Node keyTP = head;
+        //Sau khi thực hiện hàm sortType biến tham chiếu key vẫn = head nên phải cho hàm sortType trả về key
+        Node keySS = sortType(keyTP, "Thuc pham");
+        sortPriceDown(numberOfType("Thuc pham"), keyTP);
+        Node keyDM = sortType(keySS, "Sanh su");
+        sortPriceDown(numberOfType("Sanh su"), keySS);
+        sortPriceDown(numberOfType("Dien may"), keyDM);
+      
+    }
+
+    void sortTypeandDateDown() throws ParseException{
+        
+        Node keyTP = head;
+        //Sau khi thực hiện hàm sortType biến tham chiếu key vẫn = head nên phải cho hàm sortType trả về key
+        Node keySS = sortType(keyTP, "Thuc pham");
+        sortDateDown(numberOfType("Thuc pham"), keyTP);
+        Node keyDM = sortType(keySS, "Sanh su");
+        sortDateDown(numberOfType("Sanh su"), keySS);
+        sortDateDown(numberOfType("Dien may"), keyDM);
       
     }
 
@@ -424,7 +508,7 @@ public class WareHouse {
         Node current = head;
         long S = 0;
         while (current != null) {
-            S += current.data.giaNhap;
+            S += current.data.giaNhap*current.data.sLTonKho;
             current = current.next;
         }
         return S;

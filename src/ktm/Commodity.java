@@ -32,35 +32,35 @@ public class Commodity {
     void nhapThongTin() {
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Mã hàng(không để trống): ");
+        System.out.print("Ma hang(khong de trong): ");
         maHang = sc.nextInt();
         sc.nextLine();
-        System.out.print("Tên hàng:");
+        System.out.print("Ten hang:");
         tenHang = sc.nextLine();
-        System.out.println("Loại: ");
-        System.out.println("     1.Thực phẩm");
-        System.out.println("     2.Sành sứ");
-        System.out.println("     3.Điện máy");
-        System.out.print("Lựa chọn: ");
+        System.out.println("Loai: ");
+        System.out.println("     1.Thuc pham");
+        System.out.println("     2.Sanh su");
+        System.out.println("     3.Dien may");
+        System.out.print("Lua chon: ");
         luaChon = sc.nextInt();
         switch (luaChon) {
         case (1):
-            loai = "Thực phẩm";
+            loai = "Thuc pham";
             break;
         case (2):
-            loai = "Sành sứ";
+            loai = "Sanh su";
             break;
         case (3):
-            loai = "Điện máy";
+            loai = "Dien may";
             break;
         }
         sc.nextLine();
-        System.out.print("Giá nhập: ");
+        System.out.print("Gia nhap: ");
         giaNhap = sc.nextInt();
-        System.out.print("Số lượng tồn kho: ");
+        System.out.print("So luong ton kho: ");
         sLTonKho = sc.nextInt();
         sc.nextLine();
-        System.out.print("Ngày nhập kho(dd/mm/yyy): ");
+        System.out.print("Ngay nhap kho(dd/mm/yyyy): ");
         try {
             ngayNhap = sdf.parse(sc.nextLine());
         } catch (Exception e) {
@@ -68,8 +68,8 @@ public class Commodity {
     }
 
     void inThongTin() {
-        System.out.printf("%-15d %-27s %-15s %-15d %-20d %-20s  \n", maHang, tenHang, loai, giaNhap, sLTonKho,
-                sdf.format(ngayNhap));
+        System.out.printf("%-2s %-15d %-27s %-15s %-15d %-20d %-13s %-2s \n","**" ,maHang, tenHang, loai, giaNhap, sLTonKho,
+                sdf.format(ngayNhap),"**");
     }
 
 }

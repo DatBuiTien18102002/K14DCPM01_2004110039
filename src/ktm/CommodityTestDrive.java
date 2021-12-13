@@ -127,9 +127,8 @@ public class CommodityTestDrive {
                                         "**                                            Danh sách hàng hóa                                                  **");
                                 System.out.println(
                                         "**----------------------------------------------------------------------------------------------------------------**");
-                                System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Mã hàng",
-                                        "Tên hàng hóa", "Loại",
-                                        "Giá nhập", "Số lượng tồn kho", "Ngày nhập kho", "**");
+                                System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Ma hang",
+                                        "Ten hang hoa", "Loai","Gia nhap", "So luong ton kho", "Ngay nhap kho", "**");
                                 System.out.println(
                                         "**----------------------------------------------------------------------------------------------------------------**");
 
@@ -156,9 +155,9 @@ public class CommodityTestDrive {
                                         "**                                            Danh sách hàng hóa                                                  **");
                                 System.out.println(
                                         "**----------------------------------------------------------------------------------------------------------------**");
-                                System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Mã hàng",
-                                        "Tên hàng hóa", "Loại",
-                                        "Giá nhập", "Số lượng tồn kho", "Ngày nhập kho", "**");
+                                System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Ma hang",
+                                        "Ten hang hoa", "Loai",
+                                        "Gia nhap", "So luong ton kho", "Ngay nhap kho", "**");
                                 System.out.println(
                                         "**----------------------------------------------------------------------------------------------------------------**");
 
@@ -181,9 +180,8 @@ public class CommodityTestDrive {
                                         "**                                            Danh sách hàng hóa                                                  **");
                                 System.out.println(
                                         "**----------------------------------------------------------------------------------------------------------------**");
-                                System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Mã hàng",
-                                        "Tên hàng hóa", "Loại",
-                                        "Giá nhập", "Số lượng tồn kho", "Ngày nhập kho", "**");
+                                System.out.printf("%-2s %-15s %-27s %-15s %-15s %-20s %-13s %-2s \n", "**", "Ma hang",
+                                        "Ten hang hoa", "Loai","Gia nhap", "So luong ton kho", "Ngay nhap kho", "**");
                                 System.out.println(
                                         "**----------------------------------------------------------------------------------------------------------------**");
 
@@ -249,7 +247,6 @@ public class CommodityTestDrive {
                                 int choice3 = sc.nextInt();
                                 if (choice3 == 1) {
                                     ds.sortTypeandPriceUp();
-                                    ;
                                     ds.printList();
                                 } else {
                                     ds.sortTypeandPriceDown();
@@ -265,7 +262,6 @@ public class CommodityTestDrive {
                                 int choice4 = sc.nextInt();
                                 if (choice4 == 1) {
                                     ds.sortTypeandDateUp();
-                                    ;
                                     ds.printList();
                                 } else {
                                     ds.sortTypeandDateDown();
